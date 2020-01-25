@@ -8,7 +8,9 @@ namespace TopEmployee.Models
 {
     public class Employee
     {
-        public int ID { get; set; }
+        [Key]
+        [Required]
+        public int EmployeeId { get; set; }
         [Required]
         [Display(Name = "Name and surname")]
         public string Name { get; set; }
@@ -18,5 +20,7 @@ namespace TopEmployee.Models
         public string Username { get; set; }
         [Display(Name = "Password")]
         public string Password { get; set; }
+        [Display(Name = "Level of authority")]
+        public string Role { get; set; }
     }
 }

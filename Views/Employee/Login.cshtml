@@ -1,4 +1,4 @@
-﻿
+﻿@model TopEmployee.ViewModel.EmployeeViewModel
 @{
     ViewBag.Title = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +6,25 @@
 
 <h2>Login</h2>
 
+@using (Html.BeginForm("CheckEmployee", "Employee", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.Username)
+        @Html.TextBoxFor(m => m.Employee.Username, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.Password)
+        @Html.TextBoxFor(m => m.Employee.Password, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+}
+@if (Model != null && Model.Employee == null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@Model.Employee.Username");
+            };
+    </script>
+}

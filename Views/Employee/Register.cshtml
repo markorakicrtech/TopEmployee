@@ -6,15 +6,16 @@
 
 <h2>Register</h2>
 
-@using (Html.BeginForm("Create", "Employee"))
+@using (Html.BeginForm("Save", "Employee"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Employee.Name)
-        @Html.TextBoxFor(m => m.Employee.Name, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Employee.Name, new { @class = "form-control input-validation-error" })
+        @Html.ValidationMessageFor(m => m.Employee.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Employee.Birthdate)
-        @Html.TextBoxFor(m => m.Employee.Birthdate, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Employee.Birthdate, "{0:dd.MM.yyyy}", new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Employee.Username)
@@ -27,5 +28,5 @@
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Save</button>
     </div>
-    
+
 }

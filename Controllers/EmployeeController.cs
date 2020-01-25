@@ -16,8 +16,14 @@ namespace TopEmployee.Controllers
             _context = new AplicationDBContext();
         }
         // GET: Employee
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+            base.Dispose(disposing);
+        }
         public ActionResult Login()
         {
+            EmployeeViewModel evm = new EmployeeViewModel();
             return View();
         }
         public ViewResult Register()
@@ -26,11 +32,26 @@ namespace TopEmployee.Controllers
             return View(evm);
         }
         [HttpPost]
-        public ActionResult Create(EmployeeViewModel evm)
+        public ActionResult Save(EmployeeViewModel evm)
         {
-            //_context.Employees.Add(evm.Employee);
-            //_context.SaveChanges();
+            if (!ModelState.IsValid)
+            {
+
+            }
+            _context.Employees.Add(evm.Employee);
+            _context.SaveChanges();
             return RedirectToAction("Index", "Employee");
         }
+        
+      
+        public ActionResult CheckEmployee(EmployeeViewModel evm)
+        {
+            //var employee = _context.Employees.FirstOrDefault(x => x.Username == evm.Employee.Username 
+            //                                        && x.Password == evm.Employee.Password);
+
+            
+            return View();
+        }
+
     }
 }
